@@ -12,10 +12,9 @@ function p = predictOneVsAll(all_theta, X)
 m = size(X, 1);
 num_labels = size(all_theta, 1);
 
-% Add ones to the X data matrix
 X = [ones(m, 1) X];
 
-% m x num_label matrix, where:
+% m * num_label matrix, where:
 % probs(i,j) = probability that example i belongs to label j  
 probs = X * all_theta';
 

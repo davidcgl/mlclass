@@ -7,17 +7,13 @@ function [all_theta] = oneVsAll(X, y, num_labels, lambda)
 m = size(X, 1);
 n = size(X, 2);
 
-% Add ones to the X data matrix
 X = [ones(m, 1) X];
-
-% fmincg options
 options = optimset('GradObj', 'on', 'MaxIter', 50);
 
 % Each row all_theta(i) correspond to theta parameters that minimizes the cost
 % J(all_theta(i)) = local optima for label i
 all_theta = zeros(num_labels, n+1);
 
-% Calculate optimal theta for all labels
 for c = 1:num_labels
     % m-dimensional vector of {0,1}, where:
     %   0 = y(i) belongs to label c
