@@ -7,17 +7,17 @@ m = size(X, 1);
 
 % Add a bias unit to input layer.
 % Forward propagate from input layer to layer 2.
-layer1 = [ones(1, m); X'];
-layer2 = sigmoid(Theta1 * layer1);
+layer1 = [ones(1, m) X];
+layer2 = sigmoid(layer1 * Theta1');
 
 % Add a bias unit to layer 2.
 % Forward propagate from layer 2 to layer 3.
-layer2 = [ones(1, size(layer2, 2)); layer2];
-layer3 = sigmoid(Theta2 * layer2);
+layer2 = [ones(1, size(layer2, 2)) layer2];
+layer3 = sigmoid(layer2 * Theta2');
 
-% layer3 is 10x5000 matrix: maximum value in a column j represent the predicted
-% class for example j.
-[max_val, max_val_indices] = max(layer3);
-p = max_val_indices';
+% layer3 is m x 10 matrix.
+% For each row, maximum value's index (1-10) is the predicted class.
+[max_val, max_val_indices] = max(layer3, [], 2);
+p = max_val_indices;
 
 end
